@@ -19,7 +19,7 @@ app.disable('x-powered-by');
 app.use (require('./routes/index'));
  
 mongoose.Promise = global.Promise;
-
+console.log(config.database)
 mongoose.connect(config.database.uri, config.database.options)
   .then(() => {
     console.log('Mongo DB Connected!');
@@ -28,9 +28,9 @@ mongoose.connect(config.database.uri, config.database.options)
     console.log(`DB Connection Error: ${err.message}`);
 });
 
-mongoose.set("debug", (collectionName, method, query, doc) => {
-  console.log(`${collectionName}.${method}`, JSON.stringify(query), doc);
-});
+// mongoose.set("debug", (collectionName, method, query, doc) => {
+//   console.log(`${collectionName}.${method}`, JSON.stringify(query), doc);
+// });
 
 app.use(ErrorMiddleware);
 
